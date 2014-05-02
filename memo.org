@@ -1,0 +1,9 @@
+#+TITLE:     ロト6をあてる
+#+AUTHOR:    吉井 英人
+#+EMAIL:     yoshii@swlab.cs.okayama-u.ac.jp
+#+DATE:      2013-xx-xx
+#+SETUPFILE: options/default.org
+
+* ページ
+http://www.takarakuji-loto.jp/loto6-mini/
+
