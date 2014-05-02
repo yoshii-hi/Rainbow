@@ -44,13 +44,45 @@ class LOTOAnalyzer
   end
 
   def top6
+    counted_numbers = count_number
+    top6 = counted_numbers.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }[0..5].map{|k,v| k.to_i}.sort
+  end
+
+  def top5_and_random1
+    counted_numbers = count_number
+    top5 = counted_numbers.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }[0..4].map{|k,v| k.to_i}.sort
+    random_number = random_number(top5)
+    numbers = top5 + [random_number]
+    numbers.sort
+  end
+
+  private
+  # count_number
+  # return count_number
+  # key: number, value: count
+  # {"1" => 4, "2" => 5, ...}
+  def count_number
     loto_list = get_past_lucky_number
     count_number = Hash.new(0)
-    loto_list.loto_list.each do |loto|
+    loto_list.each do |loto|
       loto.numbers.each do |n|
         count_number["#{n}"] += 1 if n != 0
       end
     end
-    top6 = count_number.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }[0..5].map{|k,v| k.to_i}.sort
+    return count_number
+  end
+
+  def random_number(numbers)
+    random_number = Random.new.rand(43) + 1
+    while numbers.include?(random_number)
+      random_number = Random.new.rand(43) + 1
+    end
+    return random_number
+  end
+
+  def print_counted_numbers
+    counted_numbers.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }.each do |k,v|
+      puts "#{k}, #{v}"
+    end
   end
 end

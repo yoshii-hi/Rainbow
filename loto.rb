@@ -9,6 +9,12 @@ class LOTOList
   def <<(data)
     @loto_list << data
   end
+
+  def each
+    @loto_list.each do |value|
+      yield value
+    end
+  end
 end
 
 class LOTO
